@@ -79,6 +79,7 @@ public class BottomTabLayout extends LinearLayout {
         mSelectedTextColor = getResources().getColor(mTabItemProvider.getSelectedColor());
         mUnSelectedTextColor = getResources().getColor(mTabItemProvider.getUnSelectedColor());
 
+        //初始化
         mTabItemLayouts = new View[mTabItemProvider.getCount()];
         for(int i = 0 ; i < mTabItemProvider.getCount(); i ++ ){
             View view = mTabItemProvider.getItem(i,this);
@@ -109,7 +110,6 @@ public class BottomTabLayout extends LinearLayout {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            Log.e("BottomTabLayout","onPageScrolled ---position=" + position + ",positionOffset=" + positionOffset);
             onViewPagerPageChanged(position, positionOffset);
 
             if (mViewPagerPageChangeListener != null) {
@@ -119,7 +119,7 @@ public class BottomTabLayout extends LinearLayout {
 
         @Override
         public void onPageSelected(int position) {
-            Log.e("BottomTabLayout","onPageSelected ----position=" + position );
+            //修改ImageView图片颜色
             for (int i = 0; i < getChildCount(); i++) {
                 ((TabIconImageView) mTabItemLayouts[i].findViewById(R.id.bottom_tab_image))
                         .transformPage(position == i ? 0 : 1);
@@ -160,6 +160,7 @@ public class BottomTabLayout extends LinearLayout {
         invalidate();
     }
 
+    //检查数据
     private void checkedData(){
         if(mTabItemProvider == null){
             throw new RuntimeException("TabItemProvider must not null, please invoke setUp() to set");
@@ -187,7 +188,7 @@ public class BottomTabLayout extends LinearLayout {
 
                 selectedIconView.transformPage(mSelectionOffset);
                 nextIconView.transformPage(1 - mSelectionOffset);
-                //draw text color
+                //设置TextView的颜色
                 Integer selectedColor = (Integer) mColorEvaluator.evaluate(mSelectionOffset,
                         mSelectedTextColor,
                         mUnSelectedTextColor);
@@ -201,6 +202,7 @@ public class BottomTabLayout extends LinearLayout {
         }
     }
 
+    //tab item的点击处理
     private class TabClickListener implements OnClickListener {
         @Override
         public void onClick(View v) {

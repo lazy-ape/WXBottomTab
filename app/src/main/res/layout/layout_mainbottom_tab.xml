@@ -7,15 +7,15 @@
 
     <com.lyape.bottomtabbar.TabIconImageView
         android:id="@id/bottom_tab_image"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         />
 
     <TextView
         android:id="@id/bottom_tab_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="11.5sp"
+        android:textSize="12.5sp"
         />
 
 </LinearLayout>
